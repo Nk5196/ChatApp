@@ -9,7 +9,6 @@ export const getUsersForSidebar = async (req, res) => {
             { _id: { $ne: loggedInUserId } },
             { password: 0 } // Exclude the password field
         );
-        
 
         res.send(filteredUser);
 
