@@ -10,6 +10,8 @@ const Message = () => {
             />
         </div>
       </div>
+      <div className="chat-bubble chat-bubble-primary p-2 mb-1">What kind of nonsense is this</div>
+      <div className="chat-bubble chat-bubble-success p-2 mb-1">You have been given a great honor.</div>
     </div>
   )
 }
