@@ -2,10 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Home from './pages/home/Home'
 import Login from './pages/login/Login'
-import SignUp from './pages/signup/SignUp'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
