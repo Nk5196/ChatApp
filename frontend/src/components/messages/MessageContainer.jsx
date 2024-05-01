@@ -2,8 +2,13 @@ import React from 'react'
 
 const MessageContainer = () => {
   return (
-    <div className='w-96'>
-      <div className='h-10 p-2 bg-gray-500'>to:  <span className='font-semibold text-black'>Sam Edwards</span></div>
+    <div className='md:min-w-[450] flex flex-col'>
+       <><div className='bg-slate-500 px-4 mb-2'>
+              <span className='label-text'>To:</span>{" "}
+              <span className='text-gray-900 font-bold'>John doe</span>
+        </div>
+        <Messages />
+        </> 
     </div >
   )
 }
