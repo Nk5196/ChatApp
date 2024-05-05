@@ -7,12 +7,14 @@ import path from 'path'
 import connectToMongoDB from './db/connectToMongoDB.js';
 import cookieParser from 'cookie-parser';
 const app = express();
+import cors from 'cors';
+
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 const _dirname = path.resolve();
 
-
+app.use(cors());
 app.use(cookieParser()) 
 app.use(express.json());
 app.use('/api/auth', authRoutes)
