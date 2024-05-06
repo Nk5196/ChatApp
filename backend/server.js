@@ -14,34 +14,26 @@ dotenv.config();
 
 const _dirname = path.resolve();
 
-app.use(cors());
+const allowedOrigins = ['http://127.0.0.1:3000'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, 
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser()) 
 app.use(express.json());
 app.use('/api/auth', authRoutes)
 app.use('/api/messages', messageRoutes)
 app.use('/api/users', userRoutes)
 
-// app.use(express.static(path.join(_dirname, "/frontend/dist")));
-
-// app.get("*", (req,res)=>{
-//     res.sendFile(path.join(_dirname,"frontend", "dist", "index.html"))
-// })
-// app.get("/", (req, res) => {
-//     res.send("hello world");
-// })
-
-
-// app.get('/api/auth/signup', (req,res) => {
-//     console.log("signup")
-// })
-
-// app.get('/api/auth/login', (req,res) => {
-//     console.log("login")
-// })
-
-// app.get('/api/auth/logout', (req,res) => {
-//     console.log("logout")
-// })
 
 app.listen(PORT, () => {
     connectToMongoDB()

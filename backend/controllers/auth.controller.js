@@ -8,9 +8,11 @@ dotenv.config();
 
 export const signup = async (req, res) => {
    try{
-    const { fullName, userName, password, confirmPassword, gender} = req.body;
-   
-    if(password !== confirmPassword){
+    const { fullName, userName, passWord, confirmPassword, gender} = req.body;
+
+    console.log("passwords", passWord, confirmPassword);
+
+    if(passWord !== confirmPassword){
         return res.status(400).json({error: "Passwords don't match"})
     }
 
@@ -22,7 +24,7 @@ export const signup = async (req, res) => {
     
     const salt = await bcrypt.genSalt(10);
 
-    const hashedPassword = await bcrypt.hash(password, salt)
+    const hashedPassword = await bcrypt.hash(passWord, salt)
 
 
     const profileAvatar =`https://avatar.iran.liara.run/public/${gender == 'male'?'boy':'girl'}?username=${userName}`
@@ -31,7 +33,6 @@ export const signup = async (req, res) => {
         fullName, 
         userName, 
         password:hashedPassword, 
-        confirmPassword, 
         gender,
         profilePic:profileAvatar
     })
@@ -44,13 +45,11 @@ export const signup = async (req, res) => {
    
     const {  fullName, 
         userName, 
-        confirmPassword, 
         gender,
         profilePic} =  userData
     return res.status(201).json({
         fullName, 
         userName, 
-        confirmPassword, 
         gender,
         profilePic
     })
