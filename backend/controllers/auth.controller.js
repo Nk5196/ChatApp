@@ -68,9 +68,9 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try{
-        const { userName, password} = req.body;
+        const { username, password} = req.body;
 
-        const user = await User.findOne({ userName });
+        const user = await User.findOne({ userName:username });
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || '')
 
         if(!user || ! isPasswordCorrect){
@@ -82,14 +82,14 @@ export const login = async (req, res) => {
         const {  fullName, 
             confirmPassword, 
             gender,
+            userName,
             profilePic} =  user
         return res.status(200).json({
             fullName, 
             userName, 
-            confirmPassword, 
             gender,
             profilePic
-        })
+        })  
         
 
    }catch(e){
