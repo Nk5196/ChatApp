@@ -2,18 +2,23 @@ import React from 'react'
 import MessageInput from './MessageInput.jsx'
 import Messages from './Messages.jsx'
 import { TiMessages } from "react-icons/ti";
+import { useAuthContext } from '../../context/AuthContext.jsx';
 
 
 const MessageContainer = () => {
+  const noChatSelected = true;
   return (
     <div className='md:min-w-[450] flex flex-col'>
-       <><div className='bg-slate-500 px-4 mb-2'>
+      {noChatSelected ? (
+        <NoChatSelected />
+      ):
+      <><div className='bg-slate-500 px-4 mb-2'>
               <span className='label-text'>To:</span>{" "}
               <span className='text-gray-900 font-bold'>John doe</span>
         </div>
         <Messages />
         <MessageInput/>
-        </> 
+        </> }
     </div >
   )
 }   
