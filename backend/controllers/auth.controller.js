@@ -90,7 +90,6 @@ export const login = async (req, res) => {
             gender,
             profilePic
         })  
-        
 
    }catch(e){
     console.log("Error in Login Controller",e.message);
